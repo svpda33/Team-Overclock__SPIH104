@@ -1,0 +1,20 @@
+{
+  "name": "learnaiq-backend",
+  "version": "1.0.0",
+  "description": "LearnAIQ Personal AI Tutor Backend - Node.js + Express + SQLite",
+  "main": "server/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/index.js",
+    "seed": "node server/seed.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.18.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}

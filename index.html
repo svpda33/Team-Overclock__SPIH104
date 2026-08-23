@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnAIQ | Personal AI Tutor for Class 1 to Class 3 (K-12 Expansion)</title>
+  <meta name="description" content="LearnAIQ is your friendly AI tutor for Class 1, 2, and 3 students with Class 4-12 expanding soon. Simple, step-by-step explanations for Maths and Science tailored to your child's pace.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+</head>
+<body>
+
+  <!-- MAIN LANDING PAGE VIEW (CONTAINING MARKETING SECTIONS) -->
+  <div id="mainLandingView">
+  <!-- ==========================================
+       1. NAVIGATION BAR
+       ========================================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="nav-brand">
+        <div class="brand-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span>Learn<span class="brand-q-tag">AIQ</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
+        <li><a href="#classes" class="nav-link" data-i18n="nav_classes">Classes</a></li>
+        <li><a href="#subjects" class="nav-link" data-i18n="nav_subjects">Subjects</a></li>
+        <li><a href="#ai-tutor" class="nav-link" onclick="navigateToAiTutor(event)" data-i18n="nav_tutor">AI Tutor</a></li>
+        <li><a href="#pricing" class="nav-link" data-i18n="nav_pricing">Pricing</a></li>
+        <li><a href="#reviews" class="nav-link" data-i18n="nav_reviews">Reviews</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language Selector (English & Telugu Only) -->
+        <div class="lang-selector" title="Select Language / భాష ఎంచుకోండి">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="te">తెలుగు (Telugu)</option>
+          </select>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" id="navLoginBtn" onclick="openLoginModal('login')" data-i18n="btn_login">Student Login</button>
+        <button class="btn btn-amber btn-sm" id="navSignupBtn" onclick="openLoginModal('signup')" data-i18n="btn_free_trial_top">Start Free Trial</button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       2. HERO SECTION WITH BACKGROUND SLIDESHOW (nLearn Style)
+       ========================================== -->
+  <section class="hero-section" id="home">
+    <!-- Animated Kid-Friendly Background Slideshow Container -->
+    <div class="hero-slideshow-container" id="heroSlideshow">
+      <!-- Slide 1: Space Safari -->
+      <div class="hero-slide slide-space active">
+        <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <circle cx="120" cy="100" r="40" fill="#6366F1" opacity="0.3"/>
+          <circle cx="700" cy="400" r="70" fill="#4F46E5" opacity="0.2"/>
+          <text x="680" y="150" font-size="64" opacity="0.8">🚀</text>
+          <text x="100" y="480" font-size="54" opacity="0.8">🪐</text>
+          <text x="400" y="80" font-size="40" opacity="0.8">⭐</text>
+        </svg>
+      </div>
+
+      <!-- Slide 2: Nature Jungle -->
+      <div class="hero-slide slide-jungle">
+        <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <circle cx="700" cy="100" r="60" fill="#F59E0B" opacity="0.3"/>
+          <circle cx="100" cy="500" r="80" fill="#10B981" opacity="0.2"/>
+          <text x="120" y="150" font-size="64" opacity="0.8">🦁</text>
+          <text x="650" y="480" font-size="54" opacity="0.8">🌻</text>
+          <text x="420" y="90" font-size="44" opacity="0.8">🦋</text>
+        </svg>
+      </div>
+
+      <!-- Slide 3: Pizza Math Adventure -->
+      <div class="hero-slide slide-pizza">
+        <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <circle cx="150" cy="120" r="70" fill="#EF4444" opacity="0.25"/>
+          <circle cx="680" cy="450" r="75" fill="#F59E0B" opacity="0.25"/>
+          <text x="650" y="140" font-size="64" opacity="0.8">🍕</text>
+          <text x="110" y="450" font-size="54" opacity="0.8">🍰</text>
+          <text x="400" y="85" font-size="44" opacity="0.8">🍎</text>
+        </svg>
+      </div>
+
+      <!-- Slide 4: Ocean Discovery -->
+      <div class="hero-slide slide-ocean">
+        <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <circle cx="650" cy="120" r="65" fill="#0EA5E9" opacity="0.3"/>
+          <circle cx="150" cy="450" r="85" fill="#06B6D4" opacity="0.25"/>
+          <text x="120" y="160" font-size="64" opacity="0.8">🐬</text>
+          <text x="670" y="470" font-size="54" opacity="0.8">🐠</text>
+          <text x="400" y="95" font-size="44" opacity="0.8">🫧</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-bg-shapes">
+      <div class="shape-blob-1"></div>
+      <div class="shape-blob-2"></div>
+    </div>
+
+    <!-- Kid-Friendly Floating Visual Elements -->
+    <div class="floating-bg-element bg-el-1">
+      <svg width="50" height="50" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#6366F1" opacity="0.2"/><text x="50" y="65" font-size="45" text-anchor="middle">🚀</text></svg>
+    </div>
+    <div class="floating-bg-element bg-el-2">
+      <svg width="50" height="50" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#14B8A6" opacity="0.2"/><text x="50" y="65" font-size="45" text-anchor="middle">🎨</text></svg>
+    </div>
+    <div class="floating-bg-element bg-el-3">
+      <svg width="50" height="50" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#F59E0B" opacity="0.2"/><text x="50" y="65" font-size="45" text-anchor="middle">🦁</text></svg>
+    </div>
+    <div class="floating-bg-element bg-el-4">
+      <svg width="50" height="50" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#EC4899" opacity="0.2"/><text x="50" y="65" font-size="45" text-anchor="middle">⭐</text></svg>
+    </div>
+
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="sparkle">✨</span> <span data-i18n="hero_badge">KG to Class 12 Learning Companion</span>
+        </div>
+        <h1 class="hero-heading" data-i18n="hero_heading">
+          Learning Made Simple with <span class="text-gradient">LearnAIQ</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Your friendly AI tutor that grows with your child from KG to Class 12. Starts with Class 1–3 today with higher classes expanding soon!
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn btn-amber" onclick="openLoginModal()" data-i18n="btn_start_trial">
+            Start 7-Day Free Trial
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <a href="#classes" class="btn btn-secondary" data-i18n="btn_explore_classes">Explore Classes</a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="trust_trial">7-Day Free Trial</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="trust_lang">English &amp; Telugu</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="trust_safe">Safe &amp; Encouraging</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual-wrapper">
+        <div class="floating-card fc-1">
+          <div class="fc-icon icon-purple">⚡</div>
+          <div class="fc-text">
+            <h5 data-i18n="fc_ai_title">AI Powered</h5>
+            <p data-i18n="fc_ai_desc">Adapts in real time</p>
+          </div>
+        </div>
+
+        <div class="floating-card fc-2">
+          <div class="fc-icon icon-teal">💡</div>
+          <div class="fc-text">
+            <h5 data-i18n="fc_exp_title">Simple Explanations</h5>
+            <p data-i18n="fc_exp_desc">Visual pizza &amp; stories</p>
+          </div>
+        </div>
+
+        <div class="floating-card fc-3">
+          <div class="fc-icon icon-amber">🌟</div>
+          <div class="fc-text">
+            <h5 data-i18n="fc_trial_title">7-Day Free Trial</h5>
+            <p data-i18n="fc_trial_desc">Class 1 from $10/mo</p>
+          </div>
+        </div>
+
+        <div class="hero-main-card">
+          <div class="tutor-avatar-header">
+            <div class="avatar-circle">🤖<span class="avatar-status-dot"></span></div>
+            <div class="avatar-info">
+              <h4>LearnAIQ Buddy</h4>
+              <p data-i18n="tutor_status_sub">Ready in English &amp; Telugu</p>
+            </div>
+          </div>
+
+          <div class="hero-chat-snippet">
+            <div class="chat-bubble user" data-i18n="hero_user_msg">"What is a fraction?"</div>
+            <div class="chat-bubble ai" id="heroAiBubbleText" data-i18n="hero_ai_msg">
+              "A <strong>fraction</strong> shows a part of a whole! 🍕 Imagine a pizza cut into 4 equal slices. If you eat 1 slice, you ate <strong>1/4</strong> of the pizza!"
+            </div>
+            <div class="hero-chip-row">
+              <span class="mini-chip" onclick="scrollToTutor('fraction')" data-i18n="chip_ex">🔍 Show Example</span>
+              <span class="mini-chip" onclick="scrollToTutor('fraction-simple')" data-i18n="chip_simple">🧩 Explain Simply</span>
+              <span class="mini-chip" onclick="scrollToTutor('fraction-quiz')" data-i18n="chip_try">🎯 Try Practice</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slideshow Control Dot Indicators -->
+    <div class="slideshow-dots-bar">
+      <span class="slide-dot active" onclick="goToSlide(0)"></span>
+      <span class="slide-dot" onclick="goToSlide(1)"></span>
+      <span class="slide-dot" onclick="goToSlide(2)"></span>
+      <span class="slide-dot" onclick="goToSlide(3)"></span>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       KIDS VISUAL & ILLUSTRATION BANNER
+       ========================================== -->
+  <section class="container">
+    <div class="kids-media-banner">
+      <div class="media-banner-text">
+        <h3 data-i18n="banner_title">Fun Visual Learning For Young Explorers 🌈</h3>
+        <p data-i18n="banner_desc">Kids learn best when concepts come alive! LearnAIQ uses animated visuals, stories, and voice interactions to make every lesson exciting.</p>
+        <button class="btn btn-primary btn-sm" onclick="openLoginModal()" data-i18n="btn_banner_action">Join Free For 7 Days</button>
+      </div>
+
+      <div class="kids-illus-box">
+        <svg width="280" height="160" viewBox="0 0 280 160">
+          <rect width="280" height="160" rx="16" fill="#EEF2FF"/>
+          <circle cx="230" cy="40" r="24" fill="#F59E0B"/>
+          <path d="M220 50 Q230 35 245 45 Q255 35 265 45 Q270 55 255 60 L215 60 Z" fill="#FFFFFF" opacity="0.9"/>
+          <text x="30" y="110" font-size="42">🦊</text>
+          <text x="90" y="110" font-size="42">🚀</text>
+          <text x="150" y="110" font-size="42">🪐</text>
+          <text x="210" y="110" font-size="42">🍕</text>
+          <circle cx="140" cy="45" r="18" fill="#10B981"/>
+          <text x="140" y="51" font-size="16" text-anchor="middle" fill="#FFF">100%</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. CLASS SELECTION & UPCOMING K-12 EXPANSION SECTION
+       ========================================== -->
+  <section class="section-spacer" id="classes">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="step_1_tag">Step 01</div>
+        <h2 class="section-title" data-i18n="classes_title">Choose Your Class</h2>
+        <p class="section-subtitle" data-i18n="classes_subtitle">Active classes for primary students, with higher grades expanding continuously!</p>
+      </div>
+
+      <!-- Active Primary Classes Grid -->
+      <div class="class-grid">
+        <div class="class-card active" data-class="1" onclick="selectClass(1)">
+          <div class="class-select-indicator">✓</div>
+          <div class="class-badge-num">1</div>
+          <h3 data-i18n="c1_title">Class 1</h3>
+          <div class="class-tagline" data-i18n="c1_tagline">"Build your basics"</div>
+          <p class="class-desc" data-i18n="c1_desc">Counting numbers, simple addition, basic shapes, body parts, plants, animals, and water.</p>
+          <button class="btn btn-primary btn-sm" data-i18n="btn_start_learning">Start Learning</button>
+        </div>
+
+        <div class="class-card" data-class="2" onclick="selectClass(2)">
+          <div class="class-select-indicator">✓</div>
+          <div class="class-badge-num">2</div>
+          <h3 data-i18n="c2_title">Class 2</h3>
+          <div class="class-tagline" data-i18n="c2_tagline">"Learn and explore"</div>
+          <p class="class-desc" data-i18n="c2_desc">Place value, multiplication, time &amp; money, living things, habitats, and nutrition.</p>
+          <button class="btn btn-primary btn-sm" data-i18n="btn_start_learning">Start Learning</button>
+        </div>
+
+        <div class="class-card" data-class="3" onclick="selectClass(3)">
+          <div class="class-select-indicator">✓</div>
+          <div class="class-badge-num">3</div>
+          <h3 data-i18n="c3_title">Class 3</h3>
+          <div class="class-tagline" data-i18n="c3_tagline">"Strengthen your concepts"</div>
+          <p class="class-desc" data-i18n="c3_desc">Fractions, geometry, measurement, states of matter, force &amp; motion, and body systems.</p>
+          <button class="btn btn-primary btn-sm" data-i18n="btn_start_learning">Start Learning</button>
+        </div>
+      </div>
+
+      <!-- UPCOMING HIGHER CLASSES ROADMAP BANNER (Class 4 to Class 12) -->
+      <div class="upcoming-classes-box">
+        <div class="upcoming-header">
+          <span class="upcoming-tag-badge" data-i18n="upcoming_badge">🚀 Growing With Your Child</span>
+          <h3 data-i18n="upcoming_roadmap_title">Higher Classes Expanding Soon (Class 4 to Class 12)</h3>
+          <p data-i18n="upcoming_roadmap_desc">LearnAIQ is designed to stay with your child throughout their school journey — meeting them at every stage from KG all the way to Class 12.</p>
+        </div>
+
+        <div class="upcoming-grid">
+          <div class="upcoming-card">
+            <div class="upcoming-badge">Class 4 ($25/mo)</div>
+            <h4 data-i18n="c4_title">Class 4 — Decimals &amp; Ecosystems</h4>
+            <p data-i18n="c4_desc">Advanced long division, decimals, perimeter, area, food chains &amp; energy cycles.</p>
+            <span class="notify-btn" onclick="openLoginModal()" data-i18n="btn_notify">🔔 Notify Me On Launch</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-badge">Class 5 ($30/mo)</div>
+            <h4 data-i18n="c5_title">Class 5 — Pre-Algebra &amp; Space Science</h4>
+            <p data-i18n="c5_desc">Factors, multiples, prime numbers, solar system, atmosphere &amp; simple machines.</p>
+            <span class="notify-btn" onclick="openLoginModal()" data-i18n="btn_notify">🔔 Notify Me On Launch</span>
+          </div>
+
+          <div class="upcoming-card">
+            <div class="upcoming-badge">Class 6 – 12 (Future)</div>
+            <h4 data-i18n="c6_12_title">Class 6 to Class 12 Journey</h4>
+            <p data-i18n="c6_12_desc">Physics, Chemistry, Biology, Advanced Algebra &amp; Calculus with personalized AI guidance.</p>
+            <span class="notify-btn" onclick="openLoginModal()" data-i18n="btn_notify">🔔 Pre-Register Student</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. SUBJECT SECTION
+       ========================================== -->
+  <section class="section-spacer" id="subjects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="step_2_tag">Step 02</div>
+        <h2 class="section-title" data-i18n="subjects_title">What Do You Want to Learn?</h2>
+        <p class="section-subtitle" data-i18n="subjects_subtitle">Pick a subject to explore curated topics with your AI tutor.</p>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card maths active" data-subject="Maths" onclick="selectSubject('Maths')">
+          <div class="subject-icon-box">📐</div>
+          <div class="subject-info">
+            <h3 data-i18n="maths_title">MATHS</h3>
+            <p data-i18n="maths_desc">Learn numbers, calculations, shapes and more with simple step-by-step explanations.</p>
+            <div class="subject-badge-pill">
+              <span data-i18n="maths_pill">🔢 Numbers, Shapes &amp; Fractions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-card science" data-subject="Science" onclick="selectSubject('Science')">
+          <div class="subject-icon-box">🔬</div>
+          <div class="subject-info">
+            <h3 data-i18n="science_title">SCIENCE</h3>
+            <p data-i18n="science_desc">Explore plants, animals, matter, the human body and the world around you.</p>
+            <div class="subject-badge-pill">
+              <span data-i18n="science_pill">🌱 Nature, Body &amp; Forces</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. DYNAMIC CHAPTER SELECTION SECTION
+       ========================================== -->
+  <section class="section-spacer" id="chapters">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="step_3_tag">Step 03</div>
+        <h2 class="section-title" id="chapterSectionTitle" data-i18n="chapter_section_title">Class 1 — Maths Chapters</h2>
+        <p class="section-subtitle" id="chapterSectionSubtitle" data-i18n="chapter_section_subtitle">Select any chapter to begin an interactive session with your AI Tutor.</p>
+      </div>
+
+      <div class="chapter-filter-bar">
+        <div class="filter-chip active" id="chipClassInfo">Class 1</div>
+        <div class="filter-chip active" id="chipSubjectInfo">Maths</div>
+      </div>
+
+      <div class="chapter-grid" id="chapterGridContainer"></div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================
+       7. PRICING & INCREMENTAL CLASS STRUCTURE
+       ========================================== -->
+  <section class="section-spacer" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="pricing_tag">Transparent Pricing</div>
+        <h2 class="section-title" data-i18n="pricing_title">Start Free, Upgrade As Your Child Grows</h2>
+        <p class="section-subtitle" data-i18n="pricing_subtitle">Every plan starts with a <strong>1-Week FREE Trial</strong>. Class 1 starts at $10/month with a $5 increment for each higher class as your child grows.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Class 1 Plan</h3>
+            <div class="pricing-trial-note">🎁 7-Day FREE Trial Included</div>
+          </div>
+          <div class="pricing-amount">
+            <span class="price-num">$10</span>
+            <span class="price-period">/ month after trial</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full Class 1 Maths &amp; Science</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Voice Read-Aloud for Kids</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> English &amp; Telugu Support</li>
+          </ul>
+          <button class="btn btn-primary" onclick="openLoginModal(1)">Start 7-Day Free Trial</button>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-card-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Class 2 Plan</h3>
+            <div class="pricing-trial-note">🎁 7-Day FREE Trial Included</div>
+          </div>
+          <div class="pricing-amount">
+            <span class="price-num">$15</span>
+            <span class="price-period">/ month after trial</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full Class 2 Maths &amp; Science</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Real-time Adaptive Tutor</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> English &amp; Telugu Support</li>
+          </ul>
+          <button class="btn btn-amber" onclick="openLoginModal(2)">Start 7-Day Free Trial</button>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Class 3 Plan</h3>
+            <div class="pricing-trial-note">🎁 7-Day FREE Trial Included</div>
+          </div>
+          <div class="pricing-amount">
+            <span class="price-num">$20</span>
+            <span class="price-period">/ month after trial</span>
+          </div>
+          <ul class="pricing-features-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full Class 3 Maths &amp; Science</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Deep Conceptual Challenges</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full Learning Analytics</li>
+          </ul>
+          <button class="btn btn-primary" onclick="openLoginModal(3)">Start 7-Day Free Trial</button>
+        </div>
+      </div>
+
+      <!-- Pricing Formula Banner for Expanding Classes -->
+      <div class="pricing-formula-note">
+        💡 <strong>Incremental Pricing Policy:</strong> Class 1 is $10/mo, Class 2 is $15/mo, Class 3 is $20/mo... each higher class increases by <strong>+$5/month</strong> (e.g. Class 4 = $25/mo, Class 5 = $30/mo up to Class 12).
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       8. REVIEWS & WORLDWIDE RATING SECTION (ABOVE FOOTER)
+       ========================================== -->
+  <section class="section-spacer" id="reviews">
+    <div class="container">
+      <div class="reviews-summary-bar">
+        <div class="rating-big-stat">
+          <div class="stat-score">4.7</div>
+          <div>
+            <div class="stat-stars">★★★★★</div>
+            <div class="stat-label" data-i18n="rating_label">Average Global Rating</div>
+          </div>
+        </div>
+
+        <div class="stat-metrics-group">
+          <div class="metric-item">
+            <h4>50,000+</h4>
+            <p data-i18n="metric_users">Worldwide Students 🌍</p>
+          </div>
+          <div class="metric-item">
+            <h4>98%</h4>
+            <p data-i18n="metric_satisfaction">Parent Satisfaction</p>
+          </div>
+          <div class="metric-item">
+            <h4>2 Languages</h4>
+            <p data-i18n="metric_langs">English &amp; Telugu</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-tag" data-i18n="reviews_tag">Parent &amp; Student Love</div>
+        <h2 class="section-title" data-i18n="reviews_title">Loved By Kids &amp; Trusted By Parents</h2>
+        <p class="section-subtitle" data-i18n="reviews_subtitle">See how LearnAIQ is helping students master Maths and Science with confidence across the globe.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="rev_1_text">"My daughter in Class 2 used to fear Maths addition. LearnAIQ explained it using pizza slices and Telugu audio! She now loves practice time."</p>
+          <div class="reviewer-profile">
+            <div class="reviewer-avatar">👨‍👩‍👧</div>
+            <div class="reviewer-info">
+              <h5 data-i18n="rev_1_name">Srinivas Rao</h5>
+              <p data-i18n="rev_1_sub">Parent of Class 2 Student (Hyderabad)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="rev_2_text">"The 'Explain Why' feature is pure gold! It doesn’t just ask for a multiple-choice answer, it checks if my son actually understands the concept."</p>
+          <div class="reviewer-profile">
+            <div class="reviewer-avatar">👩‍🏫</div>
+            <div class="reviewer-info">
+              <h5 data-i18n="rev_2_name">Anitha Sharma</h5>
+              <p data-i18n="rev_2_sub">Primary School Teacher &amp; Parent</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text" data-i18n="rev_3_text">"I love listening to the AI tutor read aloud in Telugu! The fractions lesson with cake slices was so much fun."</p>
+          <div class="reviewer-profile">
+            <div class="reviewer-avatar">👦</div>
+            <div class="reviewer-info">
+              <h5 data-i18n="rev_3_name">Karthik (Age 8)</h5>
+              <p data-i18n="rev_3_sub">Class 3 Student (Visakhapatnam)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="write-review-container">
+        <button class="btn btn-secondary" onclick="openReviewModal()" data-i18n="btn_write_review">✍️ Write a Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       9. FINAL CTA SECTION
+       ========================================== -->
+  <section class="section-spacer">
+    <div class="container">
+      <div class="final-cta-card">
+        <h2 data-i18n="final_cta_title">Ready to Start Learning with LearnAIQ?</h2>
+        <p data-i18n="final_cta_desc">Start your 7-Day Free Trial today. Give your child a personal AI tutor in English &amp; Telugu!</p>
+        <button class="btn btn-secondary" onclick="openLoginModal()" data-i18n="btn_start_trial_now">Start Free Trial Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       10. FOOTER
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="nav-brand">
+            <div class="brand-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <span>Learn<span class="brand-q-tag">AIQ</span></span>
+          </a>
+          <p class="footer-desc" data-i18n="footer_desc">Making learning simple with AI. Personal guidance across Maths and Science for Class 1 to Class 12 students.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav_heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#classes" data-i18n="nav_classes">Classes</a></li>
+            <li><a href="#subjects" data-i18n="nav_subjects">Subjects</a></li>
+            <li><a href="#ai-tutor" onclick="navigateToAiTutor(event)" data-i18n="nav_tutor">AI Tutor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_classes_heading">Classes Roadmap</h4>
+          <ul class="footer-links">
+            <li><a href="#classes" onclick="selectClass(1)">Class 1 ($10/mo)</a></li>
+            <li><a href="#classes" onclick="selectClass(2)">Class 2 ($15/mo)</a></li>
+            <li><a href="#classes" onclick="selectClass(3)">Class 3 ($20/mo)</a></li>
+            <li><a href="#classes">Class 4 ($25/mo - Soon)</a></li>
+            <li><a href="#classes">Class 5–12 (Expanding)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_pricing_heading">Trial &amp; Pricing</h4>
+          <ul class="footer-links">
+            <li><a href="#pricing" data-i18n="pricing_link">7-Day Free Trial</a></li>
+            <li><a href="#reviews" data-i18n="reviews_link">4.7★ Student Reviews</a></li>
+            <li><a href="#" onclick="openLoginModal()" data-i18n="btn_login">Student Login</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 LearnAIQ. All rights reserved. Problem Statement PS 06.</p>
+        <p data-i18n="footer_heart">Built with ❤️ for every young learner in English &amp; Telugu.</p>
+      </div>
+    </div>
+  </footer>
+
+  </div> <!-- END mainLandingView -->
+
+  <!-- ==========================================
+       DEDICATED FULL-PAGE AI TUTOR WORKSPACE APP
+       ========================================== -->
+  <div id="aiTutorAppPage" class="ai-tutor-app-page" style="display:none;">
+    <!-- Dedicated App Top Navbar -->
+    <header class="tutor-app-navbar">
+      <div class="nav-brand" style="cursor:pointer;" onclick="showLandingPage()">
+        <div class="brand-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span>Learn<span class="brand-q-tag">AIQ</span></span>
+      </div>
+
+      <button class="btn-back-home" onclick="showLandingPage()">
+        ← <span data-i18n="btn_back_home">Back to Home</span>
+      </button>
+
+      <div class="nav-actions">
+        <!-- Language Selector -->
+        <div class="lang-selector" title="Select Language">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <select id="languageSelectApp" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="te">తెలుగు (Telugu)</option>
+          </select>
+        </div>
+
+        <div id="userProfileBadgeApp"></div>
+      </div>
+    </header>
+
+    <!-- Main Full-Page AI Tutor Workspace Area -->
+    <main class="tutor-app-main">
+      <div class="tutor-student-banner" id="tutorStudentBanner">
+        <div class="tutor-banner-info">
+          <span class="online-indicator">🟢</span>
+          <strong id="tutorStudentNameGreeting">Welcome! Your Personal AI Tutor is Ready</strong>
+        </div>
+        <div class="tutor-banner-badge" id="tutorClassBadge">Class 1 • Maths & Science</div>
+      </div>
+
+      <!-- Lesson Progress & Active Control Toolbar -->
+      <div class="tutor-progress-toolbar">
+        <div class="progress-bar-block">
+          <div class="progress-label-row">
+            <span class="progress-title">📊 Subject Progress: <strong id="progressPercentText">0% Completed</strong></span>
+            <span class="progress-count" id="progressCountText">0/4 Chapters</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="tutor-action-toolbar">
+          <button class="btn btn-secondary btn-sm btn-restart-lesson" onclick="restartCurrentLesson()" title="Start this lesson fresh from Step 1 while saving past history">
+            🔄 <span data-i18n="btn_restart_lesson">Start Lesson Fresh</span>
+          </button>
+          <button class="btn btn-amber btn-sm btn-complete-lesson" id="btnCompleteLesson" onclick="markLessonCompleted()">
+            ✅ <span data-i18n="btn_complete_lesson">Mark Lesson Completed</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tutor-section-wrapper full-web-wrapper">
+        <div class="tutor-control-panel">
+          <div class="tutor-profile">
+            <div class="tutor-avatar-big">🤖</div>
+            <div class="tutor-info-box">
+              <h3>LearnAIQ Buddy</h3>
+              <p data-i18n="tutor_active_status">🟢 Active &amp; Ready</p>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <h5 data-i18n="quick_prompts_heading">4-Step Learning Roadmap</h5>
+            <div class="quick-action-buttons">
+              <button class="quick-btn" onclick="sendQuickPrompt('Step 1: Concept Analogy')">
+                <span>🎯 Step 1: Concept Analogy</span>
+              </button>
+              <button class="quick-btn" onclick="sendQuickPrompt('Step 2: Step-by-Step Explanation')">
+                <span>💡 Step 2: Explanation</span>
+              </button>
+              <button class="quick-btn" onclick="sendQuickPrompt('Step 3: Real-Life Example')">
+                <span>🌟 Step 3: Real-Life Example</span>
+              </button>
+              <button class="quick-btn" onclick="sendQuickPrompt('Step 4: Practice Quiz')">
+                <span>🧠 Step 4: Practice Quiz</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tutor-features-toggle">
+            <div class="toggle-item">
+              <span data-i18n="read_aloud_toggle">Read Aloud (Voice)</span>
+              <label class="switch">
+                <input type="checkbox" id="voiceToggle" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-item">
+              <span data-i18n="encouraging_toggle">Encouraging Tone</span>
+              <label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
+            </div>
+            <div class="toggle-item">
+              <span data-i18n="guardian_toggle">Safety Guardian</span>
+              <label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutor-chat-area full-web-chat">
+          <div class="chat-header-bar">
+            <div><strong id="chatSubjectHeading">Class 3 — Fractions (Maths)</strong></div>
+            <div class="active-context-badge" data-i18n="adaptive_pace_badge">✨ Adaptive Pace: Balanced</div>
+          </div>
+
+          <div class="chat-messages-container" id="chatMessages">
+            <div class="msg-row ai-msg">
+              <div class="msg-avatar">🤖</div>
+              <div>
+                <div class="msg-bubble-content" data-i18n="tutor_welcome_msg">
+                  Hi there! 👋 I'm your LearnAIQ Tutor. What would you like to explore today? You can ask me anything about <strong>Fractions</strong> or pick a quick question below!
+                </div>
+                <button class="chat-audio-btn" onclick="speakCurrentMsg(this)">🔊 Listen</button>
+              </div>
+            </div>
+
+            <div class="msg-row user-msg">
+              <div class="msg-avatar">👦</div>
+              <div class="msg-bubble-content" data-i18n="hero_user_msg">"What is a fraction?"</div>
+            </div>
+
+            <div class="msg-row ai-msg">
+              <div class="msg-avatar">🤖</div>
+              <div>
+                <div class="msg-bubble-content" data-i18n="hero_ai_msg">
+                  A <strong>fraction</strong> shows a part of a whole. For example, if a pizza is divided into 4 equal pieces and you take 1 piece, you have <strong>1/4</strong> of the pizza! 🍕
+                </div>
+                <button class="chat-audio-btn" onclick="speakCurrentMsg(this)">🔊 Listen</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <button class="btn btn-icon mic-btn" title="Voice Input (Speech-to-Text)" onclick="triggerVoiceInput()">🎤</button>
+            <input type="text" id="chatInputField" class="chat-input-field" placeholder="Ask your AI tutor anything..." onkeypress="handleKeyPress(event)">
+            <button class="btn btn-primary btn-sm" onclick="sendCustomMessage()" data-i18n="btn_send">Send</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODAL 1: STUDENT LOGIN / SIGNUP MODAL
+       ========================================== -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content-box">
+      <button class="modal-close-btn" onclick="closeLoginModal()">&times;</button>
+      
+      <!-- Tab Header for Log In vs Sign Up -->
+      <div class="auth-modal-tabs">
+        <button id="tabBtnLogin" class="auth-tab-btn active" onclick="switchAuthTab('login')">
+          🔑 <span data-i18n="tab_login">Student Log In</span>
+        </button>
+        <button id="tabBtnSignup" class="auth-tab-btn" onclick="switchAuthTab('signup')">
+          ✨ <span data-i18n="tab_signup">Sign Up (Free Trial)</span>
+        </button>
+      </div>
+
+      <!-- LOG IN FORM (Existing Users: 3 Details - Username, Mobile Number, Password) -->
+      <div id="authLoginSection" class="auth-section">
+        <h3 class="modal-title" data-i18n="modal_login_head">Welcome Back!</h3>
+        <p class="modal-subtitle" data-i18n="modal_login_subhead">Enter your 3 details to access your account.</p>
+
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label data-i18n="lbl_username">Username</label>
+            <input type="text" id="loginUsername" class="form-control" placeholder="e.g. aarav123" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_phone">Mobile Number</label>
+            <input type="tel" id="loginPhone" class="form-control" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_password">Password</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)" title="Show Password" aria-label="Toggle Password Visibility">
+                <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;" data-i18n="btn_login_submit">Log In to LearnAIQ</button>
+        </form>
+      </div>
+
+      <!-- SIGN UP FORM (New Users: 5 Details - Full Name, Username, Phone, Password, Class) -->
+      <div id="authSignupSection" class="auth-section" style="display:none;">
+        <h3 class="modal-title" data-i18n="modal_signup_head">Create New Student Account</h3>
+        <p class="modal-subtitle" data-i18n="modal_signup_subhead">Start your 7-Day FREE Trial on LearnAIQ instantly!</p>
+
+        <form id="signupForm" onsubmit="handleSignupSubmit(event)">
+          <div class="form-group">
+            <label data-i18n="lbl_name">Full Name</label>
+            <input type="text" id="regName" class="form-control" placeholder="e.g. Aarav Sharma" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_username">Username</label>
+            <input type="text" id="regUsername" class="form-control" placeholder="e.g. aarav123" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_phone">Mobile Number</label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_password">Password</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="regPassword" class="form-control" placeholder="••••••••" required>
+              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('regPassword', this)" title="Show Password" aria-label="Toggle Password Visibility">
+                <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i18n="lbl_select_class">Select Class</label>
+            <select id="regClassSelect" class="form-control">
+              <option value="1">Class 1 ($10/mo after trial)</option>
+              <option value="2">Class 2 ($15/mo after trial)</option>
+              <option value="3">Class 3 ($20/mo after trial)</option>
+              <option value="4">Class 4 ($25/mo - Pre-register)</option>
+              <option value="5">Class 5 ($30/mo - Pre-register)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-amber" style="width:100%; margin-top:0.5rem;" data-i18n="btn_start_trial_submit">Start 7-Day Free Trial Now</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: WRITE A REVIEW MODAL
+       ========================================== -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-content-box">
+      <button class="modal-close-btn" onclick="closeReviewModal()">&times;</button>
+      <h3 class="modal-title" data-i18n="modal_review_title">Write a Review</h3>
+      <p class="modal-subtitle" data-i18n="modal_review_subtitle">Share your experience with LearnAIQ!</p>
+
+      <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+        <div class="form-group">
+          <label data-i18n="lbl_rev_name">Your Name</label>
+          <input type="text" id="revAuthorName" class="form-control" placeholder="e.g. Ramesh V." required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="lbl_rev_rating">Rating (Stars)</label>
+          <select id="revStars" class="form-control">
+            <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+            <option value="4">⭐⭐⭐⭐ (4/5)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="lbl_rev_comment">Your Review / Feedback</label>
+          <textarea id="revComment" class="form-control" rows="3" placeholder="Tell us how LearnAIQ helped your child learn..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;" data-i18n="btn_submit_review">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
